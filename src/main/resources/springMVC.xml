@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--扫描组件，找控制器组件-->
+
+    <context:component-scan base-package="com.sc.spring.controller"></context:component-scan>
+
+    <!--注解驱动-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+    id="internalResourceViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"></property>
+        <property name="prefix" value="/WEB-INF/"></property>
+        <property name="suffix" value=".jsp"></property>
+        <property name="order" value="1"></property>
+    </bean>
+
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<mvc:exclude-mapping path="/loginctrl/**"></mvc:exclude-mapping>-->
+            <!--<bean class="com.sc.spring.interceptor.Logininterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+    id="multipartResolver">
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="maxUploadSize" value="1000000"></property>
+        <property name="resolveLazily" value="true"></property>
+    </bean>
+
+    <!--<bean class="com.sc.spring.exception.MyException" id="e"></bean>-->
+    <bean class="com.sc.spring.exception.MyException">
+    </bean>
+</beans>
